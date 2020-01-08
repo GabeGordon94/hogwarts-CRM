@@ -1,0 +1,35 @@
+<p>ID: {{currentStudent.id}}</p>
+<p>First Name: {{currentStudent.firstName}}</p>
+<p>Last Name: {{currentStudent.lastName}}</p>
+<p>Created: {{currentStudent.creationTime}}</p>
+<p>Updated: {{currentStudent.lastUpdated}}</p>
+<p>Magic Skills: {{currentStudent.currentMagicSkills}}</p>
+<p>
+    Desired Magic Skills: {{currentStudent.desiredMagicSkills}}
+</p>
+<p>
+    Interested in these courses: {{currentStudent.interestedInCourse}}
+</p>
+<hr />
+<div>
+    <p> Add Desired Magic Skill:</p>
+    >>
+    <select [(ngModel)]="desiredMagicSkill">
+        <option *ngFor="let skill of magicSkills" [value]="skill">{{skill}}</option>
+    </select>
+    <button (click)="addMagicSkill()">Add</button>
+</div>
+<div>
+    <p> Add Course you're interested in: </p>
+    >>
+    <select [(ngModel)]="interestedInCourse">
+        <option *ngFor="let course of courseList" [value]="course">{{course}}</option>
+    </select>
+    <button (click)="addInterestInCourse()">Add</button>
+</div>
+<hr />
+
+<button (click)="updateStudent()" [disabled]="!wasEditted">Save Details</button>
+<nav routerLink="">
+    <button>Return</button>
+</nav>

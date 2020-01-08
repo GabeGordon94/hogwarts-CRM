@@ -1,0 +1,45 @@
+<div id="formPage">
+    <div id="leftSideForm">
+        <input type="text" placeholder="First Name" [(ngModel)]='firstName'/>
+            <input type="text" placeholder="Last Name" [(ngModel)]='lastName'/>
+        <div>
+            <p> Add Existing Magic Skill:</p>
+            >>
+            <select [(ngModel)]="existingMagicSkills">
+                <option *ngFor="let skill of magicSkills" [value]="skill">{{skill}}</option>
+            </select>
+            <button (click)="addExistingMagicSkill()">Add</button>
+        </div>
+        <div>
+            <p> Add Desired Magic Skill:</p>
+            >>
+            <select [(ngModel)]="desiredMagicSkills">
+                <option *ngFor="let skill of magicSkills" [value]="skill">{{skill}}</option>
+            </select>
+            <button (click)="addMagicSkill()">Add</button>
+        </div>
+        <div>
+            <p> Add Course you're interested in: </p>
+            >>
+            <select [(ngModel)]="interestedInCourse">
+                <option *ngFor="let course of courseList" [value]="course">{{course}}</option>
+            </select>
+
+            <button (click)="addInterestInCourse()"  >Add</button>
+
+        </div>
+    </div>
+    <div id="rightSideForm">
+        <p>First Name: {{firstName | uppercase}}</p>
+        <p>Last Name: {{lastName | uppercase}}</p>
+        <p>Existing Magic Skill: {{existingMagicSkillsArray}}</p>
+        <p>Desired Magic Skill: {{desiredMagicSkillsArray}}</p>
+        <p>Interesting Courses: {{interestedInCourseArray}}</p>
+    </div>
+
+</div>
+<button (click)="addStudent()"  [disabled]="!lastName || !firstName">Add</button>
+
+<nav routerLink="">
+    <button>Return</button>
+</nav>
