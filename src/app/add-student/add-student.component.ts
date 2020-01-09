@@ -9,15 +9,17 @@ import { Student } from '../student';
 })
 export class AddStudentComponent implements OnInit {
 
-  desiredMagicSkillsArray: string[] = []
+  existingMagicSkillsObj: object = {}
+  desiredMagicSkillsObj: object = {}
   interestedInCourseArray: string[] = []
-  existingMagicSkillsArray: string[] = []
 
   firstName: string
   lastName: string
   desiredMagicSkills: string
+  desiredMagicSkillLevel: string
   interestedInCourse: string
   existingMagicSkills: string
+  existingMagicSkillLevel:string
 
   magicSkills: string[] = [
     'Alchemy', 'Animation', 'Conjuror', 'Disintegration', 'Elemental', 'Healing', 'Illusion', 'Immortality', 'Invisibility', 'Invulnerability', 'Necromancer', 'Omnipresent', 'Omniscient', 'Poison', 'Possession', 'Self-detonation', 'Summoning', 'Water breathing'
@@ -30,10 +32,9 @@ export class AddStudentComponent implements OnInit {
   constructor(private studentsService: StudentsService) { }
 
   addMagicSkill() {
-    if (!this.desiredMagicSkillsArray.includes(this.desiredMagicSkills)) {
-      this.desiredMagicSkillsArray = [...this.desiredMagicSkillsArray, this.desiredMagicSkills];
-    }
+    this.desiredMagicSkillsObj[this.desiredMagicSkills]= this.desiredMagicSkillLevel
 
+    this.desiredMagicSkillLevel=''
     this.desiredMagicSkills = ''
   }
   addInterestInCourse() {
@@ -41,19 +42,20 @@ export class AddStudentComponent implements OnInit {
       this.interestedInCourseArray = [...this.interestedInCourseArray, this.interestedInCourse];
     }
     this.interestedInCourse = ''
+    
   }
 
   addExistingMagicSkill() {
-    if (!this.existingMagicSkillsArray.includes(this.existingMagicSkills)) {
-      this.existingMagicSkillsArray = [...this.existingMagicSkillsArray, this.existingMagicSkills];
-    }
+    this.existingMagicSkillsObj[this.existingMagicSkills]= this.existingMagicSkillLevel
+
+    this.existingMagicSkillLevel=''
     this.existingMagicSkills = ''
   }
 
   addStudent() {
     let newStudent: object = {
-      firstName: this.firstName, lastName: this.lastName, existingMagicSkills: this.existingMagicSkillsArray,
-      desiredMagicSkills: this.desiredMagicSkillsArray, interestedInCourse: this.interestedInCourseArray
+      firstName: this.firstName, lastName: this.lastName, existingMagicSkills: this.existingMagicSkillsObj,
+      desiredMagicSkills: this.desiredMagicSkillsObj, interestedInCourse: this.interestedInCourseArray
     }
     this.studentsService.addStudent(newStudent)
     this.clearAttribute()
@@ -62,8 +64,8 @@ export class AddStudentComponent implements OnInit {
   clearAttribute() {
     this.firstName = ''
     this.lastName = ''
-    this.existingMagicSkillsArray = []
-    this.desiredMagicSkillsArray = []
+    this.existingMagicSkillsObj = []
+    this.desiredMagicSkillsObj = []
     this.interestedInCourseArray = []
     this.existingMagicSkills = ''
     this.desiredMagicSkills = ''

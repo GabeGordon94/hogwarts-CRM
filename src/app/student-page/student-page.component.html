@@ -1,22 +1,37 @@
-<p>ID: {{currentStudent.id}}</p>
-<p>First Name: {{currentStudent.firstName}}</p>
-<p>Last Name: {{currentStudent.lastName}}</p>
-<p>Created: {{currentStudent.creationTime}}</p>
-<p>Updated: {{currentStudent.lastUpdated}}</p>
-<p>Magic Skills: {{currentStudent.currentMagicSkills}}</p>
-<p>
-    Desired Magic Skills: {{currentStudent.desiredMagicSkills}}
-</p>
-<p>
-    Interested in these courses: {{currentStudent.interestedInCourse}}
-</p>
+<div id='main'>
+
+    <p>ID: {{currentStudent.id}}</p>
+    <p>First Name: {{currentStudent.firstName}}</p>
+    <p>Last Name: {{currentStudent.lastName}}</p>
+    <p>Created: {{currentStudent.creationTime}}</p>
+    <p>Updated: {{currentStudent.lastUpdated}}</p>
+    <p>Magic Skills: </p>
+    <ul>
+        <li *ngFor="let skill of currentStudent.currentMagicSkills | keyvalue">
+            {{skill.key}}: lvl {{skill.value}}
+        </li>
+    </ul>
+    <p>
+        Desired Magic Skills:
+    </p>
+    <ul>
+        <li *ngFor="let skill of currentStudent.desiredMagicSkills | keyvalue">
+            {{skill.key}}: lvl {{skill.value}}
+        </li>
+    </ul>
+    <p>
+        Interested in these courses: {{currentStudent.interestedInCourse}}
+    </p>
+
+</div>
 <hr />
 <div>
     <p> Add Desired Magic Skill:</p>
     >>
     <select [(ngModel)]="desiredMagicSkill">
-        <option *ngFor="let skill of magicSkills" [value]="skill">{{skill}}</option>
+        <option *ngFor="let skill of magicSkills " [value]="skill">{{skill}}</option>
     </select>
+    <input [(ngModel)]="desiredMagicSkillLevel" type='number' max=5 min=0>
     <button (click)="addMagicSkill()">Add</button>
 </div>
 <div>

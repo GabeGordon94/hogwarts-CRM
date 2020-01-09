@@ -1,13 +1,14 @@
 <div id="formPage">
     <div id="leftSideForm">
-        <input type="text" placeholder="First Name" [(ngModel)]='firstName'/>
-            <input type="text" placeholder="Last Name" [(ngModel)]='lastName'/>
+        <input type="text" placeholder="First Name" [(ngModel)]='firstName' />
+        <input type="text" placeholder="Last Name" [(ngModel)]='lastName' />
         <div>
             <p> Add Existing Magic Skill:</p>
             >>
             <select [(ngModel)]="existingMagicSkills">
                 <option *ngFor="let skill of magicSkills" [value]="skill">{{skill}}</option>
             </select>
+            <input [(ngModel)]="existingMagicSkillLevel" type='number' max=5 min=0>
             <button (click)="addExistingMagicSkill()">Add</button>
         </div>
         <div>
@@ -16,6 +17,7 @@
             <select [(ngModel)]="desiredMagicSkills">
                 <option *ngFor="let skill of magicSkills" [value]="skill">{{skill}}</option>
             </select>
+            <input [(ngModel)]="desiredMagicSkillLevel" type='number' max=5 min=0>
             <button (click)="addMagicSkill()">Add</button>
         </div>
         <div>
@@ -25,20 +27,30 @@
                 <option *ngFor="let course of courseList" [value]="course">{{course}}</option>
             </select>
 
-            <button (click)="addInterestInCourse()"  >Add</button>
+            <button (click)="addInterestInCourse()">Add</button>
 
         </div>
     </div>
     <div id="rightSideForm">
         <p>First Name: {{firstName | uppercase}}</p>
         <p>Last Name: {{lastName | uppercase}}</p>
-        <p>Existing Magic Skill: {{existingMagicSkillsArray}}</p>
-        <p>Desired Magic Skill: {{desiredMagicSkillsArray}}</p>
+        <p>Existing Magic Skill: </p>
+        <ul>
+            <li *ngFor="let skill of existingMagicSkillsObj | keyvalue">
+                {{skill.key}}: lvl {{skill.value}}
+            </li>
+        </ul>
+        <p>Desired Magic Skill:</p>
+        <ul>
+            <li *ngFor="let skill of desiredMagicSkillsObj | keyvalue">
+                {{skill.key}}: lvl {{skill.value}}
+            </li>
+        </ul>
         <p>Interesting Courses: {{interestedInCourseArray}}</p>
     </div>
 
 </div>
-<button (click)="addStudent()"  [disabled]="!lastName || !firstName">Add</button>
+<button (click)="addStudent()" [disabled]="!lastName || !firstName">Add</button>
 
 <nav routerLink="">
     <button>Return</button>

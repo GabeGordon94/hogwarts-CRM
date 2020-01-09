@@ -12,6 +12,7 @@ export class StudentPageComponent implements OnInit {
 
   currentStudent: Student
   desiredMagicSkill: string
+  desiredMagicSkillLevel:number=0
   interestedInCourse: string
   wasEditted: boolean=false
 
@@ -28,7 +29,8 @@ export class StudentPageComponent implements OnInit {
 
 
   addMagicSkill() {
-    this.currentStudent['desiredMagicSkills'] = [...this.currentStudent['desiredMagicSkills'], this.desiredMagicSkill]
+    this.currentStudent['desiredMagicSkills'][this.desiredMagicSkill]=this.desiredMagicSkillLevel
+    this.desiredMagicSkillLevel=0
     this.desiredMagicSkill = ''
     this.wasEditted=true
   }
@@ -46,6 +48,7 @@ export class StudentPageComponent implements OnInit {
   
   ngOnInit() {
     this.currentStudent = this.selected.selectedStudent
+    console.log(this.currentStudent)
   }
   
 }

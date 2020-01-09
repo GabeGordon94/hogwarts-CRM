@@ -29,10 +29,10 @@ export class DashboardComponent implements OnInit {
       let counterDesired = 0
       let counterCurrent = 0
       for (let j = 0; j < this.classList.length; j++) {
-        if (this.classList[j]['desiredMagicSkills'].includes(this.magicSkills[i])) {
+        if (this.classList[j]['desiredMagicSkills'][this.magicSkills[i]]) {
           counterDesired++
         }
-        if (this.classList[j]['currentMagicSkills'].includes(this.magicSkills[i])) {
+        if (this.classList[j]['currentMagicSkills'][this.magicSkills[i]]) {
           counterCurrent++
         }
       }
