@@ -12,6 +12,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { ChartsModule } from 'ng2-charts';
     MatSelectModule,
     NoopAnimationsModule,
     MatTableModule,
-    ChartsModule
+    ChartsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

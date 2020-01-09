@@ -1,19 +1,54 @@
-<div id="leftRightPieCharts">
-    <div>
-        <h3>Desired Magic Skills</h3>
+<mat-tab-group mat-align-tabs="center" animationDuration="2000ms" class="tabBar">
+    <mat-tab label="Desired Magic Skills">
         <div style="display: block">
             <canvas baseChart [data]="pieChartDataDesired" [labels]="pieChartLabelsDesired"
-                [chartType]="pieChartTypeDesired"></canvas>
+                [chartType]="pieChartTypeDesired" class="canvas"></canvas>
         </div>
-    </div>
-    <div>
-        <h3>Current Magic Skills</h3>
+    </mat-tab>
+    <mat-tab label="Current Magic Skills">
         <div style="display: block">
             <canvas baseChart [data]="pieChartDataCurrent" [labels]="pieChartLabelsCurrent"
-                [chartType]="pieChartTypeCurrent"></canvas>
+                [chartType]="pieChartTypeCurrent" [options]="{size:{width:500}}" class="canvas"></canvas>
         </div>
-    </div>
-</div>
+    </mat-tab>
+    <mat-tab label="Added and Updated Students">
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Added By Day">
+                <ul *ngIf='addedPerDay'>
+                    <li> Date | Amount</li>
+                    <li *ngFor='let listItem of addedPerDay | keyvalue'>
+                        {{listItem.key}} : {{listItem.value}}</li>
+                </ul>
+            </mat-tab>
+            <mat-tab label="Added By Month">
+                <ul *ngIf='addedPerMonth'>
+
+                    <li> Date | Amount</li>
+                    <li *ngFor='let listItem of addedPerMonth | keyvalue'>
+                        {{listItem.key}} : {{listItem.value}}</li>
+                </ul>
+            </mat-tab>
+            <mat-tab label="Updated By Day">
+                <ul *ngIf='updatedPerDay'>
+                    <li> Date | Amount</li>
+                    <li *ngFor='let listItem of updatedPerDay | keyvalue'>
+                        {{listItem.key}} : {{listItem.value}}</li>
+                </ul>
+            </mat-tab>
+            <mat-tab label="Updated By Month">
+                <ul *ngIf='updatedPerMonth'>
+                    <li> Date | Amount</li>
+                    <li *ngFor='let listItem of updatedPerMonth | keyvalue'>
+                        {{listItem.key}} : {{listItem.value}}</li>
+                </ul>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-tab>
+</mat-tab-group>
+
+
+
+
 
 
 <nav routerLink="">

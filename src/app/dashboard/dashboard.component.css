@@ -1,0 +1,13 @@
+h2{
+    text-align: center;
+}
+.mat-tab-group {
+    margin-bottom: 48px;
+  }
+.tabBar{
+    background-color: rgba(178, 178, 178, .8);
+}
+
+li{
+    list-style: none;
+}
