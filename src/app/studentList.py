@@ -8,7 +8,7 @@ STUDENTS = [
     Student(1, 'Gabe', 'Gordon', '08/01/2020 11:04:07', '08/01/2020 11:04:07',
             ['Alchemy'], ['Healing'], ['Dating with magic']),
     Student(2, 'Lex', 'Dubinsky', '08/01/2020 11:04:07', '08/01/2020 11:04:07',
-            ['Alchemy'], ['Healing'], ['Dating with magic']),
+            ['Elemental'], ['Disintegration'], ['Dating with magic']),
     Student(3, 'Yinon', 'Vahan', '08/01/2020 11:04:07', '08/01/2020 11:04:07',
-            ['Alchemy'], ['Healing'], ['Dating with magic']),
+            ['Healing'], ['Conjuror'], ['Dating with magic']),
 ]

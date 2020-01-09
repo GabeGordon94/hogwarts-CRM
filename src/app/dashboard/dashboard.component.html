@@ -1,8 +1,20 @@
-<div>{{listOfStudents.length}}</div>
-<div style="display: block">
-    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-        (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+<div id="leftRightPieCharts">
+    <div>
+        <h3>Desired Magic Skills</h3>
+        <div style="display: block">
+            <canvas baseChart [data]="pieChartDataDesired" [labels]="pieChartLabelsDesired"
+                [chartType]="pieChartTypeDesired"></canvas>
+        </div>
+    </div>
+    <div>
+        <h3>Current Magic Skills</h3>
+        <div style="display: block">
+            <canvas baseChart [data]="pieChartDataCurrent" [labels]="pieChartLabelsCurrent"
+                [chartType]="pieChartTypeCurrent"></canvas>
+        </div>
+    </div>
 </div>
+
 
 <nav routerLink="">
     <button>Return</button>

@@ -30,41 +30,45 @@ export class AddStudentComponent implements OnInit {
   constructor(private studentsService: StudentsService) { }
 
   addMagicSkill() {
-    //this.currentStudent['desiredMagicSkills'] = [...this.currentStudent['desiredMagicSkills'], this.desiredMagicSkills]
-    this.desiredMagicSkillsArray = [...this.desiredMagicSkillsArray, this.desiredMagicSkills];
+    if (!this.desiredMagicSkillsArray.includes(this.desiredMagicSkills)) {
+      this.desiredMagicSkillsArray = [...this.desiredMagicSkillsArray, this.desiredMagicSkills];
+    }
 
     this.desiredMagicSkills = ''
   }
   addInterestInCourse() {
-    //this.currentStudent['interestedInCourse'] = [...this.currentStudent['interestedInCourse'], this.interestedInCourse]
-    this.interestedInCourseArray = [...this.interestedInCourseArray, this.interestedInCourse];
+    if (!this.interestedInCourseArray.includes(this.interestedInCourse)) {
+      this.interestedInCourseArray = [...this.interestedInCourseArray, this.interestedInCourse];
+    }
     this.interestedInCourse = ''
   }
 
   addExistingMagicSkill() {
-    this.existingMagicSkillsArray = [...this.existingMagicSkillsArray, this.existingMagicSkills];
-
+    if (!this.existingMagicSkillsArray.includes(this.existingMagicSkills)) {
+      this.existingMagicSkillsArray = [...this.existingMagicSkillsArray, this.existingMagicSkills];
+    }
     this.existingMagicSkills = ''
   }
 
   addStudent() {
-    let newStudent:object = {
+    let newStudent: object = {
       firstName: this.firstName, lastName: this.lastName, existingMagicSkills: this.existingMagicSkillsArray,
       desiredMagicSkills: this.desiredMagicSkillsArray, interestedInCourse: this.interestedInCourseArray
     }
     this.studentsService.addStudent(newStudent)
     this.clearAttribute()
   }
-  
-  clearAttribute(){
-    this.firstName=''
-    this.lastName=''
-    this.existingMagicSkillsArray=[]
-    this.desiredMagicSkillsArray=[]
-    this.interestedInCourseArray=[]
-    this.existingMagicSkills=''
-    this.desiredMagicSkills=''
-    this.interestedInCourse=''
+
+  clearAttribute() {
+    this.firstName = ''
+    this.lastName = ''
+    this.existingMagicSkillsArray = []
+    this.desiredMagicSkillsArray = []
+    this.interestedInCourseArray = []
+    this.existingMagicSkills = ''
+    this.desiredMagicSkills = ''
+    this.interestedInCourse = ''
+
   }
 
   ngOnInit() {
