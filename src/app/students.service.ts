@@ -15,8 +15,8 @@ export class StudentsService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  // private localhost = "http://127.0.0.1:5000/"
-  private localhost = "https://hogwarts-crm.herokuapp.com/"
+  private localhost = "http://127.0.0.1:5000/"
+  // private localhost = "https://hogwarts-crm.herokuapp.com/"
 
   constructor(private http: HttpClient, private router: Router) { }
 

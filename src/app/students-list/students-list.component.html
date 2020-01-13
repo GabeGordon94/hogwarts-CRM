@@ -21,7 +21,7 @@
             <td mat-cell *matCellDef="let student"> {{student.lastName | titlecase}} </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row  *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row class="listRow" *matRowDef="let row; columns: displayedColumns;" (click)="selectStudent(row)" routerLink="/student">
         </tr>
     </table>

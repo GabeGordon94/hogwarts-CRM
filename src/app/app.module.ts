@@ -15,7 +15,8 @@ import { ChartsModule } from 'ng2-charts';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { NotifierModule } from "angular-notifier";
-
+import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NotifierModule } from "angular-notifier";
     StudentsListComponent,
     StudentPageComponent,
     AddStudentComponent,
-    DashboardComponent
+    DashboardComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,11 @@ import { NotifierModule } from "angular-notifier";
     ChartsModule,
     MatTabsModule,
     MatButtonModule,
-    NotifierModule
+    NotifierModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

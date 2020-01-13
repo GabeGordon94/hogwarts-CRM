@@ -4,6 +4,9 @@ import { SelectedStudentService } from '../selected-student.service'
 import { StudentsService } from '../students.service';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { MatDialog } from '@angular/material';
+import { ConfirmationDialogComponent } from '../components/shared/confirmation-dialog/confirmation-dialog.component';
+
 
 @Component({
   selector: 'app-student-page',
@@ -33,7 +36,7 @@ export class StudentPageComponent implements OnInit {
 
 
   constructor(private studentsService: StudentsService, private selected: SelectedStudentService
-    , private router: Router, notifierService: NotifierService) {
+    , private router: Router, notifierService: NotifierService, public dialog: MatDialog) {
     this.notifier = notifierService;
   }
 
@@ -103,12 +106,17 @@ export class StudentPageComponent implements OnInit {
   }
 
   deleteStudent() {
-    let deleteUser = window.confirm('Are you absolutely sure you want to delete?');
-    if (deleteUser) {
-      this.studentsService.deleteStudent(this.currentStudent['id'], this.currentStudent)
-      alert('deleted')
-      this.notifier.notify("error", "Student was deleted!");
-    }
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: "Do you confirm the deletion of this student?"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if (result) {
+        this.studentsService.deleteStudent(this.currentStudent['id'], this.currentStudent)
+        this.notifier.notify("error", "Student was deleted!");
+      }
+    })
   }
 
   checkIfSaved() {

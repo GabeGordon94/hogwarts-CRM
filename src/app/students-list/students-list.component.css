@@ -45,4 +45,6 @@ table {
   }
   .mat-header-cell{
     font-size: 30px;
+    color:purple;
+    font-weight: 700;
   }
