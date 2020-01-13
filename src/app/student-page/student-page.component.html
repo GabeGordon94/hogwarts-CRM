@@ -1,14 +1,21 @@
 <div id='main'>
 
     <p>ID: {{currentStudent.id}}</p>
-    <p>First Name: {{currentStudent.firstName}}</p>
-    <p>Last Name: {{currentStudent.lastName}}</p>
+    <span>First Name: </span>
+    <input [(ngModel)]="firstName" [value]="currentStudent.firstName" (ngModelChange)="changeFirstName()">
+    <br>
+    <br>
+    <span>Last Name: </span>
+    <input [(ngModel)]="lastName" [value]="currentStudent.lastName" (ngModelChange)="changeLastName()">
     <p>Created: {{currentStudent.creationTime}}</p>
     <p>Updated: {{currentStudent.lastUpdated}}</p>
     <p>Magic Skills: </p>
     <ul>
-        <li *ngFor="let skill of currentStudent.currentMagicSkills | keyvalue">
+        <li *ngFor="let skill of currentStudent.existingMagicSkills | keyvalue">
             {{skill.key}}: lvl {{skill.value}}
+            <i class="material-icons delete_icons" (click)="deleteExistingMagicSkills(skill.key)">
+                delete_forever
+            </i>
         </li>
     </ul>
     <p>
@@ -17,34 +24,58 @@
     <ul>
         <li *ngFor="let skill of currentStudent.desiredMagicSkills | keyvalue">
             {{skill.key}}: lvl {{skill.value}}
+            <i class="material-icons delete_icons" (click)="deleteDesiredMagicSkills(skill.key)">
+                delete_forever
+            </i>
         </li>
     </ul>
     <p>
-        Interested in these courses: {{currentStudent.interestedInCourse}}
+        Interested in these courses:
     </p>
+    <ul>
+        <li *ngFor="let course of currentStudent.interestedInCourse">
+            {{course}}
+            <i class="material-icons delete_icons" (click)="deleteInterestedCourse(course)">
+                delete_forever
+            </i>
+        </li>
+    </ul>
 
 </div>
 <hr />
-<div>
-    <p> Add Desired Magic Skill:</p>
-    >>
-    <select [(ngModel)]="desiredMagicSkill">
-        <option *ngFor="let skill of magicSkills " [value]="skill">{{skill}}</option>
-    </select>
-    <input [(ngModel)]="desiredMagicSkillLevel" type='number' max=5 min=0>
-    <button (click)="addMagicSkill()">Add</button>
-</div>
-<div>
-    <p> Add Course you're interested in: </p>
-    >>
-    <select [(ngModel)]="interestedInCourse">
-        <option *ngFor="let course of courseList" [value]="course">{{course}}</option>
-    </select>
-    <button (click)="addInterestInCourse()">Add</button>
+<div class='bottomRow'>
+    <div>
+        <p> Add Existing Magic Skill:</p>
+        >>
+        <select [(ngModel)]="existingMagicSkill">
+            <option *ngFor="let skill of magicSkills " [value]="skill">{{skill}}</option>
+        </select>
+        <input [(ngModel)]="existingMagicSkillLevel" type='number' max=5 min=0>
+        <button (click)="addExistingMagicSkill()" [disabled]="!existingMagicSkill">Add</button>
+    </div>
+    <div>
+        <p> Add Desired Magic Skill:</p>
+        >>
+        <select [(ngModel)]="desiredMagicSkill">
+            <option *ngFor="let skill of magicSkills " [value]="skill">{{skill}}</option>
+        </select>
+        <input [(ngModel)]="desiredMagicSkillLevel" type='number' max=5 min=0>
+        <button (click)="addDesiredMagicSkill()" [disabled]="!desiredMagicSkill">Add</button>
+    </div>
+    <div>
+        <p> Add Course you're interested in: </p>
+        >>
+        <select [(ngModel)]="interestedInCourse">
+            <option *ngFor="let course of courseList" [value]="course">{{course}}</option>
+        </select>
+        <button (click)="addInterestInCourse()" [disabled]="!interestedInCourse">Add</button>
+    </div>
 </div>
 <hr />
+<div class="bottomRow">
+    <button mat-raised-button (click)='deleteStudent()' id='deleteBtn'>Delete</button>
 
-<button (click)="updateStudent()" [disabled]="!wasEditted">Save Details</button>
-<nav routerLink="">
-    <button>Return</button>
-</nav>
+    <button mat-raised-button (click)="updateStudent()" [disabled]="!wasEditted">Save Details</button>
+
+    <button mat-raised-button (click)="checkIfSaved()" color='primary'>Return</button>
+</div>

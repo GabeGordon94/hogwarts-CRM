@@ -1,7 +1,7 @@
 export class Student {
   constructor(
     id: number, firstName: string, lastName: string,
-    creationTime: Date, lastUpdated: Date, currentMagicSkills: string[],
+    creationTime: Date, lastUpdated: Date, existingMagicSkills: string[],
     desiredMagicSkills: string[], interestedInCourse: string[]
   ) {
     id = id
@@ -9,7 +9,7 @@ export class Student {
     lastName = lastName
     creationTime = creationTime
     lastUpdated = lastUpdated
-    currentMagicSkills = currentMagicSkills
+    existingMagicSkills = existingMagicSkills
     desiredMagicSkills = desiredMagicSkills
     interestedInCourse = interestedInCourse
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassListService } from '../class-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,22 +8,28 @@ import { ClassListService } from '../class-list.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private classListService: ClassListService) { }
+  constructor(private classListService: ClassListService, private router: Router) { }
+
+  selectedTab:number =0
 
   magicSkills: string[] = [
     'Alchemy', 'Animation', 'Conjuror', 'Disintegration', 'Elemental', 'Healing', 'Illusion', 'Immortality', 'Invisibility', 'Invulnerability', 'Necromancer', 'Omnipresent', 'Omniscient', 'Poison', 'Possession', 'Self-detonation', 'Summoning', 'Water breathing'
   ]
   classList: object[]
-     
-  addedPerDay:object
-  addedPerMonth :object
-  updatedPerDay :object
-  updatedPerMonth :object
+
+  addedPerDay: object
+  addedPerMonth: object
+  updatedPerDay: object
+  updatedPerMonth: object
 
   getStudentsPerMagicSkills(): number[][] {
+
     this.classList = this.classListService.classList
+    if (!this.classList) {
+      this.router.navigate([''])
+    }
     let desiredMagicSkillsStudentPerSkill = []
-    let currentMagicSkillsStudentPerSkill = []
+    let existingMagicSkillsStudentPerSkill = []
 
     let sizeOfMagicSkills = this.magicSkills.length
     for (let i = 0; i < sizeOfMagicSkills; i++) {
@@ -32,7 +39,7 @@ export class DashboardComponent implements OnInit {
         if (this.classList[j]['desiredMagicSkills'][this.magicSkills[i]]) {
           counterDesired++
         }
-        if (this.classList[j]['currentMagicSkills'][this.magicSkills[i]]) {
+        if (this.classList[j]['existingMagicSkills'][this.magicSkills[i]]) {
           counterCurrent++
         }
       }
@@ -43,9 +50,9 @@ export class DashboardComponent implements OnInit {
         counterCurrent = undefined
       }
       desiredMagicSkillsStudentPerSkill[i] = counterDesired
-      currentMagicSkillsStudentPerSkill[i] = counterCurrent
+      existingMagicSkillsStudentPerSkill[i] = counterCurrent
     }
-    return [desiredMagicSkillsStudentPerSkill, currentMagicSkillsStudentPerSkill]
+    return [desiredMagicSkillsStudentPerSkill, existingMagicSkillsStudentPerSkill]
   }
 
   getAddedByDayMonth(): object[] {
@@ -56,22 +63,21 @@ export class DashboardComponent implements OnInit {
     let createdTimesArray: string[] = []
     this.classList.forEach(student => {
       createdTimesArray.push(student['creationTime'].slice(0, 10))
-    }) 
+    })
 
     for (let i = 0; i < this.classList.length; i++) {
       for (let j = 0; j < createdTimesArray.length; j++) {
         if (this.classList[i]['creationTime'].slice(0, 10) === createdTimesArray[j]) {
-          console.log(this.classList[i]['creationTime'].slice(0, 10) + " == " + createdTimesArray[j])
           if (createdTimesArray[j] in addedPerDay) {
             addedPerDay[createdTimesArray[j]] = addedPerDay[createdTimesArray[j]] + 1
           } else {
             addedPerDay[createdTimesArray[j]] = 1
           }
-          if (createdTimesArray[j].slice(3,10) in addedPerMonth) {
-            addedPerMonth[createdTimesArray[j].slice(3,10)] = addedPerMonth[createdTimesArray[j].slice(3,10)] + 1
+          if (createdTimesArray[j].slice(3, 10) in addedPerMonth) {
+            addedPerMonth[createdTimesArray[j].slice(3, 10)] = addedPerMonth[createdTimesArray[j].slice(3, 10)] + 1
             break
           } else {
-            addedPerMonth[createdTimesArray[j].slice(3,10)] = 1
+            addedPerMonth[createdTimesArray[j].slice(3, 10)] = 1
             break
           }
         }
@@ -94,17 +100,16 @@ export class DashboardComponent implements OnInit {
     for (let i = 0; i < this.classList.length; i++) {
       for (let j = 0; j < updatedTimesArray.length; j++) {
         if (this.classList[i]['lastUpdated'].slice(0, 10) === updatedTimesArray[j]) {
-          console.log(this.classList[i]['lastUpdated'].slice(0, 10) + " == " + updatedTimesArray[j])
           if (updatedTimesArray[j] in updatedPerDay) {
             updatedPerDay[updatedTimesArray[j]] = updatedPerDay[updatedTimesArray[j]] + 1
           } else {
             updatedPerDay[updatedTimesArray[j]] = 1
           }
-          if (updatedTimesArray[j].slice(3,10) in updatedPerMonth) {
-            updatedPerMonth[updatedTimesArray[j].slice(3,10)] = updatedPerMonth[updatedTimesArray[j].slice(3,10)] + 1
+          if (updatedTimesArray[j].slice(3, 10) in updatedPerMonth) {
+            updatedPerMonth[updatedTimesArray[j].slice(3, 10)] = updatedPerMonth[updatedTimesArray[j].slice(3, 10)] + 1
             break
           } else {
-            updatedPerMonth[updatedTimesArray[j].slice(3,10)] = 1
+            updatedPerMonth[updatedTimesArray[j].slice(3, 10)] = 1
             break
           }
         }
@@ -112,6 +117,8 @@ export class DashboardComponent implements OnInit {
     }
     return [updatedPerDay, updatedPerMonth]
   }
+
+ 
 
   getUpdatedAndAddedByDay(): any {
     let addedArrayFromFunc: object[] = this.getAddedByDayMonth()

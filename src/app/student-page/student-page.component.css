@@ -5,3 +5,25 @@
     background-color: rgba(178, 178, 178, .8);
     padding:1%
 }
+
+li{
+    display:flex;
+}
+
+#deleteBtn{
+    background-color: red;
+}
+
+.bottomRow{
+    display:flex;
+    justify-content: space-around;
+}
+
+.delete_icons{
+    font-size: 20px !important;
+    color:#ED213A;
+}
+
+.delete_icons:hover{
+    background-color: plum;
+}

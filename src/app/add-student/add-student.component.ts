@@ -1,13 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsService } from '../students.service';
 import { Student } from '../student';
+import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
   styleUrls: ['./add-student.component.css']
 })
+
+
 export class AddStudentComponent implements OnInit {
+  private readonly notifier: NotifierService;
+
+  constructor(private studentsService: StudentsService, private router: Router,
+    notifierService: NotifierService) { 
+      this.notifier = notifierService;
+    }
 
   existingMagicSkillsObj: object = {}
   desiredMagicSkillsObj: object = {}
@@ -16,10 +26,10 @@ export class AddStudentComponent implements OnInit {
   firstName: string
   lastName: string
   desiredMagicSkills: string
-  desiredMagicSkillLevel: string
+  desiredMagicSkillLevel: number = 0
   interestedInCourse: string
   existingMagicSkills: string
-  existingMagicSkillLevel:string
+  existingMagicSkillLevel: number = 0
 
   magicSkills: string[] = [
     'Alchemy', 'Animation', 'Conjuror', 'Disintegration', 'Elemental', 'Healing', 'Illusion', 'Immortality', 'Invisibility', 'Invulnerability', 'Necromancer', 'Omnipresent', 'Omniscient', 'Poison', 'Possession', 'Self-detonation', 'Summoning', 'Water breathing'
@@ -29,12 +39,17 @@ export class AddStudentComponent implements OnInit {
     'Magic for medical professionals', 'Dating with magic']
 
 
-  constructor(private studentsService: StudentsService) { }
 
   addMagicSkill() {
-    this.desiredMagicSkillsObj[this.desiredMagicSkills]= this.desiredMagicSkillLevel
+    if (this.desiredMagicSkillLevel > 5) {
+      this.desiredMagicSkillLevel = 5
+    } else if (this.desiredMagicSkillLevel < 0) {
+      this.desiredMagicSkillLevel = 0
+    }
 
-    this.desiredMagicSkillLevel=''
+    this.desiredMagicSkillsObj[this.desiredMagicSkills] = this.desiredMagicSkillLevel
+
+    this.desiredMagicSkillLevel = 0
     this.desiredMagicSkills = ''
   }
   addInterestInCourse() {
@@ -42,13 +57,20 @@ export class AddStudentComponent implements OnInit {
       this.interestedInCourseArray = [...this.interestedInCourseArray, this.interestedInCourse];
     }
     this.interestedInCourse = ''
-    
+
   }
 
   addExistingMagicSkill() {
-    this.existingMagicSkillsObj[this.existingMagicSkills]= this.existingMagicSkillLevel
 
-    this.existingMagicSkillLevel=''
+    if (this.existingMagicSkillLevel > 5) {
+      this.existingMagicSkillLevel = 5
+    } else if (this.existingMagicSkillLevel < 0) {
+      this.existingMagicSkillLevel = 0
+    }
+
+    this.existingMagicSkillsObj[this.existingMagicSkills] = this.existingMagicSkillLevel
+
+    this.existingMagicSkillLevel = 0
     this.existingMagicSkills = ''
   }
 
@@ -58,6 +80,7 @@ export class AddStudentComponent implements OnInit {
       desiredMagicSkills: this.desiredMagicSkillsObj, interestedInCourse: this.interestedInCourseArray
     }
     this.studentsService.addStudent(newStudent)
+    this.notifier.notify("success", "Student was added!");
     this.clearAttribute()
   }
 
@@ -74,6 +97,7 @@ export class AddStudentComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.router.navigate([''])
   }
 
 }

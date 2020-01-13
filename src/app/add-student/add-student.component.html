@@ -1,15 +1,16 @@
 <div id="formPage">
     <div id="leftSideForm">
-        <input type="text" placeholder="First Name" [(ngModel)]='firstName' />
-        <input type="text" placeholder="Last Name" [(ngModel)]='lastName' />
+        <span>>><input type="text" placeholder="First Name" [(ngModel)]='firstName' /></span>
+        <br/>
+        <span>>><input type="text" placeholder="Last Name" [(ngModel)]='lastName' /></span>
         <div>
             <p> Add Existing Magic Skill:</p>
             >>
             <select [(ngModel)]="existingMagicSkills">
                 <option *ngFor="let skill of magicSkills" [value]="skill">{{skill}}</option>
             </select>
-            <input [(ngModel)]="existingMagicSkillLevel" type='number' max=5 min=0>
-            <button (click)="addExistingMagicSkill()">Add</button>
+            <input [(ngModel)]="existingMagicSkillLevel" type='number' max='5' min='0'>
+            <button (click)="addExistingMagicSkill()" [disabled]="!existingMagicSkills">Add</button>
         </div>
         <div>
             <p> Add Desired Magic Skill:</p>
@@ -18,7 +19,7 @@
                 <option *ngFor="let skill of magicSkills" [value]="skill">{{skill}}</option>
             </select>
             <input [(ngModel)]="desiredMagicSkillLevel" type='number' max=5 min=0>
-            <button (click)="addMagicSkill()">Add</button>
+            <button (click)="addMagicSkill()" [disabled]="!desiredMagicSkills">Add</button>
         </div>
         <div>
             <p> Add Course you're interested in: </p>
@@ -27,7 +28,7 @@
                 <option *ngFor="let course of courseList" [value]="course">{{course}}</option>
             </select>
 
-            <button (click)="addInterestInCourse()">Add</button>
+            <button (click)="addInterestInCourse()" [disabled]="!interestedInCourse">Add</button>
 
         </div>
     </div>
@@ -50,8 +51,8 @@
     </div>
 
 </div>
-<button (click)="addStudent()" [disabled]="!lastName || !firstName">Add</button>
-
-<nav routerLink="">
-    <button>Return</button>
-</nav>
+<div class="bottomRow"> <button mat-raised-button (click)="addStudent()" [disabled]="!lastName || !firstName">Add</button>
+    <nav routerLink="">
+        <button button mat-raised-button color='primary'>Return</button>
+    </nav>
+</div>

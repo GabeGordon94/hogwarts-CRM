@@ -9,11 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { MatTableModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
-import {MatTabsModule} from '@angular/material/tabs';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { NotifierModule } from "angular-notifier";
 
 
 @NgModule({
@@ -30,10 +31,12 @@ import {MatTabsModule} from '@angular/material/tabs';
     AppRoutingModule,
     HttpClientModule,
     MatSelectModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     MatTableModule,
     ChartsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonModule,
+    NotifierModule
   ],
   providers: [],
   bootstrap: [AppComponent]

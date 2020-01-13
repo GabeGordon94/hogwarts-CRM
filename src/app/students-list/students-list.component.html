@@ -1,6 +1,7 @@
 <div id="topNavBar">
-    <button routerLink="/add">Add Student</button>
-    <button routerLink="/dashboard">Dashboard</button>
+    <button mat-raised-button color="primary" routerLink="/add">Add Student</button>
+    <button mat-raised-button color="primary" routerLink="/dashboard">Dashboard</button>
+
 </div>
 <div>
     <table mat-table [dataSource]="studentsList" class="mat-elevation-z8">
@@ -21,7 +22,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectStudent(row)" routerLink="/student">
+        <tr mat-row class="listRow" *matRowDef="let row; columns: displayedColumns;" (click)="selectStudent(row)" routerLink="/student">
         </tr>
     </table>
 </div>

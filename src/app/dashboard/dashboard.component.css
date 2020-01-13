@@ -1,3 +1,4 @@
+
 h2{
     text-align: center;
 }
@@ -6,9 +7,12 @@ h2{
     padding:1%;
   }
 .tabBar{
-    background-color: rgba(178, 178, 178, .8);
+    background-color: #b2b2b2cc;
 }
-
 li{
     list-style: none;
+}
+
+nav{
+    text-align: center;
 }

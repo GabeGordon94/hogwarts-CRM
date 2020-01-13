@@ -1,6 +1,5 @@
-
 <nav routerLink="">
-    <button>Return</button>
+    <button mat-raised-button color='primary'>Return</button>
 </nav>
 <mat-tab-group mat-align-tabs="center" animationDuration="2000ms" class="tabBar">
     <mat-tab label="Desired Magic Skills">
@@ -17,9 +16,10 @@
     </mat-tab>
     <mat-tab label="Added and Updated Students">
         <mat-tab-group mat-align-tabs="center">
-            <mat-tab label="Added By Day">
+            <mat-tab label="Added By Day" isActive=True>
                 <ul *ngIf='addedPerDay'>
                     <li> Date | Amount</li>
+                    <hr>
                     <li *ngFor='let listItem of addedPerDay | keyvalue'>
                         {{listItem.key}} : {{listItem.value}}</li>
                 </ul>
@@ -28,6 +28,7 @@
                 <ul *ngIf='addedPerMonth'>
 
                     <li> Date | Amount</li>
+                    <hr>
                     <li *ngFor='let listItem of addedPerMonth | keyvalue'>
                         {{listItem.key}} : {{listItem.value}}</li>
                 </ul>
@@ -35,6 +36,7 @@
             <mat-tab label="Updated By Day">
                 <ul *ngIf='updatedPerDay'>
                     <li> Date | Amount</li>
+                    <hr>
                     <li *ngFor='let listItem of updatedPerDay | keyvalue'>
                         {{listItem.key}} : {{listItem.value}}</li>
                 </ul>
@@ -42,6 +44,7 @@
             <mat-tab label="Updated By Month">
                 <ul *ngIf='updatedPerMonth'>
                     <li> Date | Amount</li>
+                    <hr>
                     <li *ngFor='let listItem of updatedPerMonth | keyvalue'>
                         {{listItem.key}} : {{listItem.value}}</li>
                 </ul>
