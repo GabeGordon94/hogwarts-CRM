@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Student } from '../student';
+// import { Student } from '../student';
 import { SelectedStudentService } from '../selected-student.service'
 import { StudentsService } from '../students.service';
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class StudentPageComponent implements OnInit {
   private readonly notifier: NotifierService;
 
 
-  currentStudent: Student
+  currentStudent: any
   existingMagicSkill: string
   existingMagicSkillLevel: number = 0
   desiredMagicSkill: string
@@ -121,15 +121,31 @@ export class StudentPageComponent implements OnInit {
 
   checkIfSaved() {
     if (this.wasEditted) {
-      let verify = window.confirm("Are you sure you want to continue without saving??")
-      if (verify) {
-        this.router.navigate([''])
-      }
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        width: '350px',
+        data: "Are you sure you want to continue without saving??"
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result)
+        if (result) {
+          this.router.navigate([''])
+        }
+      })
     } else {
       this.router.navigate([''])
     }
-
   }
+
+  //   if (this.wasEditted) {
+  //     let verify = window.confirm("Are you sure you want to continue without saving??")
+  //     if (verify) {
+  //       this.router.navigate([''])
+  //     }
+  //   } else {
+  //     this.router.navigate([''])
+  //   }
+
+  // }
 
   ngOnInit() {
     this.currentStudent = this.selected.selectedStudent

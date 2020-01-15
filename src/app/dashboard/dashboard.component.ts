@@ -15,12 +15,12 @@ export class DashboardComponent implements OnInit {
   magicSkills: string[] = [
     'Alchemy', 'Animation', 'Conjuror', 'Disintegration', 'Elemental', 'Healing', 'Illusion', 'Immortality', 'Invisibility', 'Invulnerability', 'Necromancer', 'Omnipresent', 'Omniscient', 'Poison', 'Possession', 'Self-detonation', 'Summoning', 'Water breathing'
   ]
-  classList: object[]
+  classList: any[]
 
-  addedPerDay: object
-  addedPerMonth: object
-  updatedPerDay: object
-  updatedPerMonth: object
+  addedPerDay: any
+  addedPerMonth: any
+  updatedPerDay: any
+  updatedPerMonth: any
 
   getStudentsPerMagicSkills(): number[][] {
 

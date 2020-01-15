@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, debounceTime } from 'rxjs/operators';
-import { Student } from './student';
+// import { Student } from './student';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -20,15 +20,15 @@ export class StudentsService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getStudents(): Observable<Student[]> {
+  getStudents(): Observable<Object[]> {
 
     // return this.studentList;
-    return this.http.get<Student[]>(this.herokuServer).pipe(
+    return this.http.get<Object[]>(this.herokuServer).pipe(
       catchError(this.handleError<string[]>('getStudents', []))
     );
   }
 
-  updateStudent(ID: number, student: Student): void {
+  updateStudent(ID: number, student: Object): void {
     //Send to server updated student by ID
     let toSend: object = { ID, student }
     let resp = this.http.post<object>(this.herokuServer + 'update', toSend).pipe(
@@ -38,7 +38,7 @@ export class StudentsService {
     })
   }
 
-  deleteStudent(ID: number, student: Student): void {
+  deleteStudent(ID: number, student: Object): void {
     //Send to server updated student by ID
     let toSend: object = { ID, student }
     let resp = this.http.post<object>(this.herokuServer + 'delete', toSend).pipe(

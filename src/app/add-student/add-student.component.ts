@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsService } from '../students.service';
-import { Student } from '../student';
+// import { Student } from '../student';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 
@@ -19,8 +19,8 @@ export class AddStudentComponent implements OnInit {
       this.notifier = notifierService;
     }
 
-  existingMagicSkillsObj: object = {}
-  desiredMagicSkillsObj: object = {}
+  existingMagicSkillsObj: any = {}
+  desiredMagicSkillsObj: any = {}
   interestedInCourseArray: string[] = []
 
   firstName: string

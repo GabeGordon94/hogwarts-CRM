@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { NotifierModule } from "angular-notifier";
 import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material';
+import { NgxSpinnerModule } from "ngx-spinner";  
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { MatDialogModule } from '@angular/material';
     MatTabsModule,
     MatButtonModule,
     NotifierModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxSpinnerModule
   ],
   entryComponents: [
     ConfirmationDialogComponent

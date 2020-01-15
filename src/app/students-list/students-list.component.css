@@ -17,7 +17,7 @@ table {
     border-radius: 4px;
   }
 .listRow:hover {
-    color: #607D8B;
+    color: #607D8B !important;
     background-color: #DDD;
     left: .1em;
   }

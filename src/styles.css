@@ -3,6 +3,8 @@
 
 @import '~angular-notifier/styles.css';
 
+@import '~bootstrap/dist/css/bootstrap.min.css';   
+
 @font-face {
     font-family: 'lumos';
     src: url('../lumos.caps.ttf');
