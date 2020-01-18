@@ -15,15 +15,15 @@ export class StudentsService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  // private localhost = "http://127.0.0.1:5000/"
-  private herokuServer = "https://hogwarts-crm.herokuapp.com/"
+  private localhost = "http://127.0.0.1:3000/"
+  // private herokuServer = "https://hogwarts-crm.herokuapp.com/"
 
   constructor(private http: HttpClient, private router: Router) { }
 
   getStudents(): Observable<Object[]> {
 
     // return this.studentList;
-    return this.http.get<Object[]>(this.herokuServer).pipe(
+    return this.http.get<Object[]>(this.localhost).pipe(
       catchError(this.handleError<string[]>('getStudents', []))
     );
   }
@@ -31,7 +31,7 @@ export class StudentsService {
   updateStudent(ID: number, student: Object): void {
     //Send to server updated student by ID
     let toSend: object = { ID, student }
-    let resp = this.http.post<object>(this.herokuServer + 'update', toSend).pipe(
+    let resp = this.http.post<object>(this.localhost + 'update', toSend).pipe(
       catchError(this.handleError<string[]>('getStudents', []))
     );
     resp.subscribe((resp) => {
@@ -41,7 +41,7 @@ export class StudentsService {
   deleteStudent(ID: number, student: Object): void {
     //Send to server updated student by ID
     let toSend: object = { ID, student }
-    let resp = this.http.post<object>(this.herokuServer + 'delete', toSend).pipe(
+    let resp = this.http.post<object>(this.localhost + 'delete', toSend).pipe(
       catchError(this.handleError<string[]>('getStudents', []))
     );
     resp.subscribe((resp) => {
@@ -50,7 +50,7 @@ export class StudentsService {
   }
 
   addStudent(student: object): void {
-    let resp: Observable<object> = this.http.post<object>(this.herokuServer + 'add', student).pipe(
+    let resp: Observable<object> = this.http.post<object>(this.localhost + 'add', student).pipe(
       catchError(this.handleError<string[]>('getStudents', []))
     );
     resp.subscribe((resp) => {
